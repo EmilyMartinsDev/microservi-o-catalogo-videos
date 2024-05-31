@@ -12,5 +12,5 @@ interface CategoryRepositoryInterface
     public function update(Category $category):Category;
     public function findById(string $id ):Category;
     public function delete(string $id ):bool;
-    public function toCategory(object $dta ):Category;
+
 }
