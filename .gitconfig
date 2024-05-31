@@ -1,0 +1,5 @@
+[user]
+	name = emily
+	emial = emilycaroline01042005@gmail.com
+[credential]
+	helper = "!f() { /var/www/.vscode-server/bin/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/node /tmp/vscode-remote-containers-1d5cfc01-a1d2-4a5e-9284-c71122e54f5e.js git-credential-helper $*; }; f"
