@@ -33,7 +33,7 @@ cp .env.example .env
 
 Atualize as variáveis de ambiente do arquivo .env
 ```dosini
-APP_NAME="Full Cycle"
+APP_NAME="app-emily"
 APP_URL=http://localhost:8000
 
 DB_CONNECTION=mysql
