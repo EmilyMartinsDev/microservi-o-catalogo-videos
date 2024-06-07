@@ -9,7 +9,9 @@ use Core\Domain\ValueObject\Image;
 use Core\Domain\ValueObject\Media;
 use Core\Domain\ValueObject\Uuid;
 use DateTime;
-class Video extends Entity{
+
+class Video extends Entity
+{
     protected array $categoriesId = [];
 
     protected array $genresId = [];
@@ -77,6 +79,7 @@ class Video extends Entity{
     {
         unset($this->castMemberIds[array_search($castMemberId, $this->castMemberIds)]);
     }
+
     public function thumbFile(): ?Image
     {
         return $this->thumbFile;

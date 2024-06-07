@@ -2,33 +2,68 @@
 
 namespace Core\UseCase\Video;
 
+use Core\Domain\Entity\Video;
 use Core\Domain\Repository\VideoRepositoryInterface;
+use Core\Domain\Builder\Video\Builder;
+use Core\Domain\Builder\Video\BuilderVideo;
+
 use Core\UseCase\DTO\Video\Create\CreateInputVideoDTO;
 use Core\UseCase\DTO\Video\Create\CreateOutputVideoDTO;
-use Core\UseCase\Interfaces\FileStorageInterface;
-use Core\UseCase\Interfaces\TransactionInterface;
-use Core\UseCase\Video\Interfaces\VideoEventManagerInterface;
 
-class CreateVideoUseCase{
-    protected VideoRepositoryInterface $repository;
-    protected TransactionInterface $transaction;
-    protected FileStorageInterface $storage;
-    protected   VideoEventManagerInterface $eventManager;
 
-    public function __construct(
-        VideoRepositoryInterface $repository,
-        TransactionInterface $transaction,
-        FileStorageInterface $storage,
-        VideoEventManagerInterface $eventManager
-    ){
-        $this->repository = $repository;
-        $this->transaction = $transaction;
-        $this->storage = $storage;
-        $this->$eventManager  = $eventManager;
+use Throwable;
+
+class CreateVideoUseCase extends BaseVideoUseCase
+{
+    protected function getBuilder(): Builder
+    {
+        return new BuilderVideo;
     }
 
-    public function exec( CreateInputVideoDTO $input): CreateOutputVideoDTO{
+    public function exec(CreateInputVideoDTO $input): CreateOutputVideoDTO
+    {
+        $this->validateAllIds($input);
 
+        $this->builder->createEntity($input);
+
+        try {
+            $this->repository->insert($this->builder->getEntity());
+
+            $this->storageFiles($input);
+
+            $this->repository->updateMedia($this->builder->getEntity());
+
+            $this->transaction->commit();
+
+            return $this->output();
+        } catch (Throwable $th) {
+            $this->transaction->rollback();
+            // if (isset($pathMedia)) $this->storage->delete($pathMedia);
+            throw $th;
+        }
     }
-    
+
+    private function output(): CreateOutputVideoDTO
+    {
+        $entity = $this->builder->getEntity();
+
+        return new CreateOutputVideoDTO(
+            id: $entity->id(),
+            title: $entity->title,
+            description: $entity->description,
+            yearLaunched: $entity->yearLaunched,
+            duration: $entity->duration,
+            opened: $entity->opened,
+            rating: $entity->rating,
+            createdAt: $entity->createdAt(),
+            categories: $entity->categoriesId,
+            genres: $entity->genresId,
+            castMembers: $entity->castMemberIds,
+            videoFile: $entity->videoFile()?->filePath,
+            trailerFile: $entity->trailerFile()?->filePath,
+            thumbFile: $entity->thumbFile()?->path(),
+            thumbHalf: $entity->thumbHalf()?->path(),
+            bannerFile: $entity->bannerFile()?->path(),
+        );
+    }
 }
