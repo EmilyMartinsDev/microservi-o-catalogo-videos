@@ -8,14 +8,18 @@ use Core\Domain\Repository\CastMemberRepositoryInterface;
 use Core\UseCase\DTO\CastMember\Create\CastMemberCreateInputDto;
 use Core\UseCase\DTO\CastMember\Create\CastMemberCreateOutputDto;
 
-class CreateCastMemberUseCase {
+class CreateCastMemberUseCase
+{
     protected $repository;
-    public function __construct(CastMemberRepositoryInterface $repository){
+
+    public function __construct(CastMemberRepositoryInterface $repository)
+    {
         $this->repository = $repository;
     }
 
-    public function execute(CastMemberCreateInputDto $input): CastMemberCreateOutputDto{
-        
+    public function execute(CastMemberCreateInputDto $input): CastMemberCreateOutputDto
+    {
+
         $entity = new CastMember(
             name: $input->name,
             type: $input->type == 1 ? CastMemberType::DIRECTOR : CastMemberType::ACTOR
@@ -30,6 +34,4 @@ class CreateCastMemberUseCase {
             created_at: $entity->createdAt(),
         );
     }
-
-
 }

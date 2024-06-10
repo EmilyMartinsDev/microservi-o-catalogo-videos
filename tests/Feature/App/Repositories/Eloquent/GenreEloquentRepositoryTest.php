@@ -75,12 +75,12 @@ class GenreEloquentRepositoryTest extends TestCase
 
     public function testNotFoundById()
     {
-       
+
         $this->expectException(NotFoundException::class);
         $genre = 'fake_value';
 
         $this->repository->findById($genre);
-     
+
     }
 
     public function testFindById()

@@ -43,6 +43,7 @@ class CreateGenreUseCaseTest extends TestCase
 
         $this->assertDatabaseCount('category_genre', 10);
     }
+
     public function test_with_invalid_ids_categories()
     {
         $this->expectException(NotFoundException::class);
@@ -69,7 +70,8 @@ class CreateGenreUseCaseTest extends TestCase
         $this->assertDatabaseCount('category_genre', 10);
     }
 
-    public function testTransactionInsert(){
+    public function testTransactionInsert()
+    {
         $repository = new GenreEloquentRepository(new Model());
         $repositoryCategory = new CategoryEloquentRepository(new ModelCategory());
         $useCase = new CreateGenreUseCase(

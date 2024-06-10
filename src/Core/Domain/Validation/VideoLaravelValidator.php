@@ -5,8 +5,10 @@ namespace Core\Domain\Validation;
 use Core\Domain\Entity\Entity;
 use Illuminate\Support\Facades\Validator;
 
-class VideoLaravelValidator implements ValidatorInterface{
-    public function validate(Entity $entity):void{
+class VideoLaravelValidator implements ValidatorInterface
+{
+    public function validate(Entity $entity): void
+    {
         $data = $this->convertEntityForArray($entity);
 
         $validator = Validator::make($data, [
@@ -16,11 +18,11 @@ class VideoLaravelValidator implements ValidatorInterface{
             'duration' => 'required|integer',
         ]);
 
-        if($validator->fails()){
-            foreach($validator->errors()->messages() as $error){
+        if ($validator->fails()) {
+            foreach ($validator->errors()->messages() as $error) {
                 $entity->notification->addError([
-                    'context'=>'video',
-                    'message'=> $error[0]
+                    'context' => 'video',
+                    'message' => $error[0],
                 ]);
             }
         }

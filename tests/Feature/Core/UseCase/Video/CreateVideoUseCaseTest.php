@@ -14,9 +14,11 @@ class CreateVideoUseCaseTest extends BaseVideoUseCase
     {
         return CreateVideoUseCase::class;
     }
-    public function getBuilder():Builder{}
 
-    
+    public function getBuilder(): Builder
+    {
+    }
+
     public function inputDTO(
         array $categories = [],
         array $genres = [],

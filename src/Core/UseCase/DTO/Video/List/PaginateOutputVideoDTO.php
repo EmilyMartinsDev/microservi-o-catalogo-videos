@@ -1,6 +1,7 @@
 <?php
 
 namespace Core\UseCase\DTO\Video\List;
+
 class PaginateOutputVideoDTO
 {
     public function __construct(

@@ -5,7 +5,6 @@ namespace Tests\Unit\UseCase\Video;
 use Core\Domain\Repository\PaginationInterface;
 use Core\Domain\Repository\VideoRepositoryInterface;
 use Core\UseCase\DTO\Video\List\PaginateInputVideoDTO;
-use Core\UseCase\DTO\Video\List\PaginateOutputVideoDTO;
 use Core\UseCase\Video\ListVideosUseCase;
 use Mockery;
 use PHPUnit\Framework\TestCase;
@@ -35,8 +34,8 @@ class ListVideosUseCaseUnitTest extends TestCase
     {
         $mockRepository = Mockery::mock(stdClass::class, VideoRepositoryInterface::class);
         $mockRepository->shouldReceive('paginate')
-                        ->once()
-                        ->andReturn($this->mockPagination());
+            ->once()
+            ->andReturn($this->mockPagination());
 
         return $mockRepository;
     }

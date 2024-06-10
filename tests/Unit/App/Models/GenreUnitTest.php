@@ -28,7 +28,7 @@ class GenreUnitTest extends ModelTestCase
             'id',
             'name',
             'is_active',
-            'created_at'
+            'created_at',
         ];
     }
 

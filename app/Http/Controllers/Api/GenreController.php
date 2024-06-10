@@ -39,23 +39,22 @@ class GenreController extends Controller
         );
 
         return GenreResource::collection(collect($response->items))
-                                    ->additional([
-                                        'meta' => [
-                                            'total' => $response->total,
-                                            'current_page' => $response->current_page,
-                                            'last_page' => $response->last_page,
-                                            'first_page' => $response->first_page,
-                                            'per_page' => $response->per_page,
-                                            'to' => $response->to,
-                                            'from' => $response->from,
-                                        ],
-                                    ]);
+            ->additional([
+                'meta' => [
+                    'total' => $response->total,
+                    'current_page' => $response->current_page,
+                    'last_page' => $response->last_page,
+                    'first_page' => $response->first_page,
+                    'per_page' => $response->per_page,
+                    'to' => $response->to,
+                    'from' => $response->from,
+                ],
+            ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreGenre  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreGenre $request, CreateGenreUseCase $useCase)
@@ -69,8 +68,8 @@ class GenreController extends Controller
         );
 
         return (new GenreResource($response))
-                    ->response()
-                    ->setStatusCode(Response::HTTP_CREATED);
+            ->response()
+            ->setStatusCode(Response::HTTP_CREATED);
     }
 
     /**

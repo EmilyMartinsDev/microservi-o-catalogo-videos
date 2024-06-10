@@ -62,7 +62,7 @@ abstract class BaseVideoUseCase
         }
     }
 
-    protected function storageFile(string $path, ?array $media = null): null|string
+    protected function storageFile(string $path, ?array $media = null): ?string
     {
         if ($media) {
             return $this->storage->store(

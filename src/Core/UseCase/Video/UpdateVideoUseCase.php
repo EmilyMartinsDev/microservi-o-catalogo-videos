@@ -6,8 +6,6 @@ use Core\Domain\Builder\Video\Builder;
 use Core\Domain\Builder\Video\UpdateVideoBuilder;
 use Core\UseCase\DTO\Video\Update\UpdateInputVideoDTO;
 use Core\UseCase\DTO\Video\Update\UpdateOutputVideoDTO;
-use Core\UseCase\Video\BaseVideoUseCase;
-
 use Throwable;
 
 class UpdateVideoUseCase extends BaseVideoUseCase

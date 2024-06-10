@@ -11,5 +11,4 @@ class ListCategoriesInputDto
         public int $totalPage = 15,
     ) {
     }
-
 }

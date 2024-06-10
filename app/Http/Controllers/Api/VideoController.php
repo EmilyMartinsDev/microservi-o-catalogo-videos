@@ -13,13 +13,9 @@ use Core\UseCase\DTO\Video\InputVideoDTO;
 use Core\UseCase\DTO\Video\List\PaginateInputVideoDTO;
 use Core\UseCase\DTO\Video\Update\UpdateInputVideoDTO;
 use Core\UseCase\Video\CreateVideoUseCase;
-
 use Core\UseCase\Video\DeleteVideoUseCase;
-
-use Core\UseCase\Video\ListVideoUseCase;
-
 use Core\UseCase\Video\ListVideosUseCase;
-
+use Core\UseCase\Video\ListVideoUseCase;
 use Core\UseCase\Video\UpdateVideoUseCase;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -38,7 +34,7 @@ class VideoController extends Controller
         );
 
         return (new ApiAdapter($response))
-                    ->toJson();
+            ->toJson();
     }
 
     public function show(ListVideoUseCase $useCase, $id)

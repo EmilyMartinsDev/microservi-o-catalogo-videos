@@ -1,4 +1,5 @@
 <?php
+
 namespace Core\UseCase\DTO\Video\Update;
 
 class UpdateInputVideoDTO
