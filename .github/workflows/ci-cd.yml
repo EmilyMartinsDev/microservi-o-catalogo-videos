@@ -3,9 +3,9 @@ name: Laravel
 on:
   push:
     branches: [ 
-    #   "main" 
-    # , "master", 
-    # "deploy",
+      "main" 
+    , "master", 
+    "deploy",
      "hotflix/**"]
 env:
   IMAGE_NAME: emilymartins/microservice-videos-app
