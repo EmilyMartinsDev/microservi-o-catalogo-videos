@@ -2,4 +2,4 @@
 	name = emily
 	emial = emilycaroline01042005@gmail.com
 [credential]
-	helper = "!f() { /var/www/.vscode-server/bin/89de5a8d4d6205e5b11647eb6a74844ca23d2573/node /tmp/vscode-remote-containers-94333ac6-81e0-47ef-b6a2-6f549cea49ed.js git-credential-helper $*; }; f"
+	helper = "!f() { /var/www/.vscode-server/bin/89de5a8d4d6205e5b11647eb6a74844ca23d2573/node /tmp/vscode-remote-containers-e19f5223-dad7-462b-8a6e-6ca3b9fd7d93.js git-credential-helper $*; }; f"
