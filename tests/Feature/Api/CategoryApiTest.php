@@ -21,7 +21,6 @@ class CategoryApiTest extends TestCase
         $response->assertJsonCount(0, 'data');
     }
 
-
     public function test_list_all_categories()
     {
         Category::factory()->count(30)->create();

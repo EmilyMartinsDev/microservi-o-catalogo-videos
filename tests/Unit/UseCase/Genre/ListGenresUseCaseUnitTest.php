@@ -14,9 +14,13 @@ use stdClass;
 class ListGenresUseCaseUnitTest extends TestCase
 {
     protected $mockRepo;
+
     protected $spy;
+
     protected $mockPagination;
+
     protected $mockInputDto;
+
     public function test_usecase()
     {
         $mockRepository = Mockery::mock(stdClass::class, GenreRepositoryInterface::class);

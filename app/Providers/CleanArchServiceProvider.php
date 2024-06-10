@@ -56,10 +56,10 @@ class CleanArchServiceProvider extends ServiceProvider
         /**
          * Services
          */
-        // $this->app->bind(
-        //     AMQPInterface::class,
-        //     PhpAmqpService::class,
-        // );
+        $this->app->bind(
+            AMQPInterface::class,
+            PhpAmqpService::class,
+        );
     }
 
     /**

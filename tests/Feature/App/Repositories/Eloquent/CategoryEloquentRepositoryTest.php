@@ -8,19 +8,20 @@ use Core\Domain\Entity\Category as EntityCategory;
 use Core\Domain\Exception\NotFoundException;
 use Core\Domain\Repository\CategoryRepositoryInterface;
 use Core\Domain\Repository\PaginationInterface;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Throwable;
 
 class CategoryEloquentRepositoryTest extends TestCase
 {
     protected $repository;
-    protected function setUp():void{
+
+    protected function setUp(): void
+    {
         parent::setUp();
 
         $this->repository = new CategoryEloquentRepository(new ModelCategory());
     }
+
     /**
      * A basic feature test example.
      *
@@ -28,19 +29,20 @@ class CategoryEloquentRepositoryTest extends TestCase
      */
     public function testInsert()
     {
-       
-        $entityCategory = new EntityCategory(name:'Teste de integracao ', description:'realizando teste de integracao repo de categoria');
-       $output =  $this->repository->insert($entityCategory);
 
-       $this->assertInstanceOf(CategoryRepositoryInterface::class, $this->repository);
-       $this->assertInstanceOf(EntityCategory::class, $output);
+        $entityCategory = new EntityCategory(name: 'Teste de integracao ', description: 'realizando teste de integracao repo de categoria');
+        $output = $this->repository->insert($entityCategory);
+
+        $this->assertInstanceOf(CategoryRepositoryInterface::class, $this->repository);
+        $this->assertInstanceOf(EntityCategory::class, $output);
         $this->assertDatabaseHas('categories', [
-            'name'=>$entityCategory->name
+            'name' => $entityCategory->name,
         ]);
-    
+
     }
 
-    public function testFindById(){
+    public function testFindById()
+    {
         $entityCategory = ModelCategory::factory()->create();
         $response = $this->repository->findById($entityCategory->id);
 
@@ -48,6 +50,7 @@ class CategoryEloquentRepositoryTest extends TestCase
         $this->assertEquals($entityCategory->id, $response->id);
 
     }
+
     public function testFindAll()
     {
         $categories = ModelCategory::factory()->count(50)->create();
@@ -74,6 +77,7 @@ class CategoryEloquentRepositoryTest extends TestCase
         $this->assertInstanceOf(PaginationInterface::class, $response);
         $this->assertCount(0, $response->items());
     }
+
     public function testUpdateIdNotFound()
     {
         try {
@@ -85,10 +89,11 @@ class CategoryEloquentRepositoryTest extends TestCase
             $this->assertInstanceOf(NotFoundException::class, $th);
         }
     }
+
     public function testUpdate()
     {
         $categoryDB = ModelCategory::factory()->create();
-        $category = new EntityCategory(id:$categoryDB->id, name:'name updated');
+        $category = new EntityCategory(id: $categoryDB->id, name: 'name updated');
         $response = $this->repository->update($category);
 
         $this->assertInstanceOf(EntityCategory::class, $response);
@@ -112,7 +117,7 @@ class CategoryEloquentRepositoryTest extends TestCase
         $categoryDb = ModelCategory::factory()->create();
 
         $response = $this->repository
-                            ->delete($categoryDb->id);
+            ->delete($categoryDb->id);
 
         $this->assertTrue($response);
     }

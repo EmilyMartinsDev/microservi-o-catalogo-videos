@@ -23,6 +23,4 @@ class CastMember extends Model
         'id' => 'string',
         'deleted_at' => 'datetime',
     ];
-
-   
 }

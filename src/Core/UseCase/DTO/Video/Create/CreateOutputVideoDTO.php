@@ -2,7 +2,6 @@
 
 namespace Core\UseCase\DTO\Video\Create;
 
-
 use Core\Domain\Enum\Rating;
 
 class CreateOutputVideoDTO

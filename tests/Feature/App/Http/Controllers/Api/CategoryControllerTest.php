@@ -74,7 +74,6 @@ class CategoryControllerTest extends TestCase
         $this->assertEquals(Response::HTTP_OK, $response->status());
     }
 
-   
     public function test_update()
     {
         $category = Category::factory()->create();
@@ -101,7 +100,7 @@ class CategoryControllerTest extends TestCase
     public function test_delete()
     {
         $category = Category::factory()->create();
-    //    dump(  $category);
+        //    dump(  $category);
         $response = $this->controller->destroy(
             useCase: new DeleteCategoryUseCase($this->repository),
             id: $category->id

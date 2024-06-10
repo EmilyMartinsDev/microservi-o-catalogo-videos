@@ -7,7 +7,6 @@ use Core\Domain\ValueObject\Uuid;
 use Core\UseCase\DTO\Video\Delete\DeleteInputVideoDTO;
 use Core\UseCase\DTO\Video\Delete\DeleteOutputVideoDTO;
 use Core\UseCase\Video\DeleteVideoUseCase;
-
 use Mockery;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -33,8 +32,8 @@ class DeleteVideoUseCaseUnitTest extends TestCase
     {
         $mockRepository = Mockery::mock(stdClass::class, VideoRepositoryInterface::class);
         $mockRepository->shouldReceive('delete')
-                        ->once()
-                        ->andReturn(true);
+            ->once()
+            ->andReturn(true);
 
         return $mockRepository;
     }

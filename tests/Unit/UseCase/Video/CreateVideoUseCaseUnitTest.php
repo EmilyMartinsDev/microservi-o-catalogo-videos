@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Unit\UseCase\Video;
 
 use Core\Domain\Enum\Rating;

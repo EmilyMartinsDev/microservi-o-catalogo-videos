@@ -43,33 +43,35 @@ class CategoryEloquentRepository implements CategoryRepositoryInterface
     public function getIdsListIds(array $categoriesId = []): array
     {
         return $this->model
-                    ->whereIn('id', $categoriesId)
-                    ->pluck('id')
-                    ->toArray();
+            ->whereIn('id', $categoriesId)
+            ->pluck('id')
+            ->toArray();
     }
+
     public function findAll(string $filter = '', $order = 'DESC'): array
     {
-        $query = $this->model->where(function($query) use ($filter){
-            if($filter){
+        $query = $this->model->where(function ($query) use ($filter) {
+            if ($filter) {
                 $query->where('name', 'like', '%{$filter}%');
             }
         })
-        ->orderBy('id', $order)
-        ->get();
+            ->orderBy('id', $order)
+            ->get();
+
         return $query->toArray();
     }
 
     public function paginate(string $filter = '', $order = 'DESC', int $page = 1, int $totalPage = 15): PaginationInterface
     {
         $query = $this->model;
-        if($filter){
+        if ($filter) {
             $query = $query->where('name', 'LIKE', '%{$filter}%');
-            
+
         }
         $query = $query->orderBy('id', $order);
         $paginator = $query->paginate();
 
-        return new PaginationPresenter(  $paginator );
+        return new PaginationPresenter($paginator);
     }
 
     public function update(Category $category): Category
@@ -89,7 +91,6 @@ class CategoryEloquentRepository implements CategoryRepositoryInterface
         return $this->toCategory($categoryDb);
     }
 
-  
     public function delete(string $categoryId): bool
     {
         if (! $categoryDb = $this->model->find($categoryId)) {

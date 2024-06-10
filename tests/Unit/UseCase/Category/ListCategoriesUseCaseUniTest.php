@@ -1,7 +1,7 @@
 <?php
+
 namespace Tests\Unit\UseCase\Category;
 
-use Core\Domain\Entity\Category;
 use Core\Domain\Repository\CategoryRepositoryInterface;
 use Core\Domain\Repository\PaginationInterface;
 use Core\UseCase\Category\ListCategoriesUseCase;
@@ -9,22 +9,25 @@ use Core\UseCase\DTO\Category\ListCategories\ListCategoriesInputDto;
 use Core\UseCase\DTO\Category\ListCategories\ListCategoriesOutputDto;
 use Mockery;
 use PHPUnit\Framework\TestCase;
-use Ramsey\Uuid\Uuid;
 use stdClass;
 
 class ListCategoriesUseCaseUnitTest extends TestCase
-
 {
     protected $mockRepo;
+
     protected $spy;
+
     protected $mockPagination;
+
     protected $mockInputDto;
-    public function testListCategoriesEmpty(){
+
+    public function testListCategoriesEmpty()
+    {
         $this->mockRepo = Mockery::mock(stdClass::class, CategoryRepositoryInterface::class);
-      
+
         $this->mockPagination = $this->mockPagination();
-        $this->mockRepo->shouldReceive('paginate')->andReturn(  $this->mockPagination);
-        $useCase = new ListCategoriesUseCase( $this->mockRepo);   
+        $this->mockRepo->shouldReceive('paginate')->andReturn($this->mockPagination);
+        $useCase = new ListCategoriesUseCase($this->mockRepo);
 
         $this->mockInputDto = Mockery::mock(ListCategoriesInputDto::class, ['filter', 'desc']);
 
@@ -33,11 +36,11 @@ class ListCategoriesUseCaseUnitTest extends TestCase
         $this->assertCount(0, $responseUseCase->items);
         $this->assertInstanceOf(ListCategoriesOutputDto::class, $responseUseCase);
 
-          /**
+        /**
          * Spies
          */
         $this->spy = Mockery::spy(stdClass::class, CategoryRepositoryInterface::class);
-        $this->spy->shouldReceive('paginate')->andReturn( $this->mockPagination);
+        $this->spy->shouldReceive('paginate')->andReturn($this->mockPagination);
         $useCase = new ListCategoriesUseCase($this->spy);
         $useCase->execute($this->mockInputDto);
         $this->spy->shouldHaveReceived('paginate');
@@ -86,8 +89,3 @@ class ListCategoriesUseCaseUnitTest extends TestCase
         $this->assertInstanceOf(ListCategoriesOutputDto::class, $responseUseCase);
     }
 }
-
-
-
-
-?>

@@ -3,7 +3,6 @@
 namespace Core\UseCase\Category;
 
 use Core\Domain\Repository\CategoryRepositoryInterface;
-use Core\UseCase\DTO\Category\CategoryOutputDto;
 use Core\UseCase\DTO\Category\UpdateCategory\CategoryUpdateInputDto;
 use Core\UseCase\DTO\Category\UpdateCategory\CategoryUpdateOutputDto;
 
@@ -16,8 +15,8 @@ class UpdateCategoryUseCase
         $this->repository = $repository;
     }
 
-    public function execute(CategoryUpdateInputDto $input):CategoryUpdateOutputDto
-    {   
+    public function execute(CategoryUpdateInputDto $input): CategoryUpdateOutputDto
+    {
         $category = $this->repository->findById($input->id);
 
         $category->update(

@@ -4,19 +4,20 @@ namespace Core\Domain\Entity\Traits;
 
 use Exception;
 
- trait MethodsMagicsTrait
+trait MethodsMagicsTrait
 {
-    public function __get ($property){
-          if(isset($this->{$property})){
+    public function __get($property)
+    {
+        if (isset($this->{$property})) {
             return $this->$property;
-          } 
-          $classname = get_class($this);  
-          throw new Exception("Property {$property} not found in {$classname}");
+        }
+        $classname = get_class($this);
+        throw new Exception("Property {$property} not found in {$classname}");
     }
 
-    public function id() : string 
+    public function id(): string
     {
-      return (string) $this->id;
+        return (string) $this->id;
     }
 
     public function createdAt(): string
@@ -24,5 +25,3 @@ use Exception;
         return $this->createdAt->format('Y-m-d H:i:s');
     }
 }
-
-?>

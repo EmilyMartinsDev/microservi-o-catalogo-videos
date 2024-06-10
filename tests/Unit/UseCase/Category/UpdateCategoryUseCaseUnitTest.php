@@ -15,10 +15,13 @@ use stdClass;
 class UpdateCategoryUseCaseUnitTest extends TestCase
 {
     protected $mockEntity;
+
     protected $mockRepo;
+
     protected $mockInputDto;
+
     protected $spy;
-    
+
     public function testRenameCategory()
     {
         $uuid = (string) Uuid::uuid4()->toString();

@@ -3,9 +3,9 @@
 namespace Tests\Feature\Core\UseCase\Video;
 
 use App\Models\Video;
-use Core\UseCase\Video\BaseVideoUseCase;
 use Core\Domain\Builder\Video\Builder;
 use Core\UseCase\DTO\Video\Update\UpdateInputVideoDTO;
+use Core\UseCase\Video\BaseVideoUseCase;
 use Core\UseCase\Video\UpdateVideoUseCase;
 
 class UpdateVideoUseCaseTest extends BaseVideoUseCase
@@ -14,7 +14,10 @@ class UpdateVideoUseCaseTest extends BaseVideoUseCase
     {
         return UpdateVideoUseCase::class;
     }
-    public function getBuilder():Builder{}
+
+    public function getBuilder(): Builder
+    {
+    }
 
     public function inputDTO(
         array $categories = [],

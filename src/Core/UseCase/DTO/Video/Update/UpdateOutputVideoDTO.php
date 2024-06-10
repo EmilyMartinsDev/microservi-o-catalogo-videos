@@ -1,6 +1,9 @@
 <?php
+
 namespace Core\UseCase\DTO\Video\Update;
+
 use Core\Domain\Enum\Rating;
+
 class UpdateOutputVideoDTO
 {
     public function __construct(

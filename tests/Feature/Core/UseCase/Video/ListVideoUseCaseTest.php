@@ -7,7 +7,6 @@ use Core\Domain\Exception\NotFoundException;
 use Core\Domain\Repository\VideoRepositoryInterface;
 use Core\UseCase\DTO\Video\InputVideoDTO;
 use Core\UseCase\Video\ListVideoUseCase;
-use Error;
 use Tests\TestCase;
 
 class ListVideoUseCaseTest extends TestCase

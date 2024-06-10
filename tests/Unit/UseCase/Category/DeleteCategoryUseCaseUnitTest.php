@@ -13,10 +13,14 @@ use stdClass;
 
 class DeleteCategoryUseCaseUnitTest extends TestCase
 {
-    protected $mockEntity; 
+    protected $mockEntity;
+
     protected $mockRepo;
+
     protected $mockInputDto;
+
     protected $spy;
+
     public function testDelete()
     {
         $uuid = (string) Uuid::uuid4()->toString();

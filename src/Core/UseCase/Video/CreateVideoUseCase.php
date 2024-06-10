@@ -2,15 +2,10 @@
 
 namespace Core\UseCase\Video;
 
-use Core\Domain\Entity\Video;
-use Core\Domain\Repository\VideoRepositoryInterface;
 use Core\Domain\Builder\Video\Builder;
 use Core\Domain\Builder\Video\BuilderVideo;
-
 use Core\UseCase\DTO\Video\Create\CreateInputVideoDTO;
 use Core\UseCase\DTO\Video\Create\CreateOutputVideoDTO;
-
-
 use Throwable;
 
 class CreateVideoUseCase extends BaseVideoUseCase
